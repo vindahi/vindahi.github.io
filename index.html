@@ -1,1 +1,604 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ruifan Zuo - Personal Academic Homepage">
+    <title>Ruifan Zuo | Personal Homepage</title>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Theme Colors: Gradient Blue & White */
+            --primary-blue: #1565c0;
+            --secondary-blue: #42a5f5;
+            --light-blue: #e3f2fd;
+            --accent-cyan: #00bcd4;
+            --text-dark: #263238;
+            --text-gray: #546e7a;
+            --bg-white: #ffffff;
+            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            --card-shadow: 0 10px 30px rgba(21, 101, 192, 0.08);
+            --card-hover: 0 15px 35px rgba(21, 101, 192, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f8fbff;
+            background-image: radial-gradient(#e3f2fd 1px, transparent 1px);
+            background-size: 24px 24px;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        a:hover {
+            color: var(--secondary-blue);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header / Hero Section */
+        header {
+            background: var(--bg-white);
+            border-radius: 20px;
+            padding: 60px 40px;
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid var(--primary-blue);
+        }
+
+        /* Decorative gradient blob behind header */
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 300px;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(66, 165, 245, 0.1), rgba(0, 188, 212, 0.1));
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .profile-content {
+            flex: 1;
+            z-index: 1;
+        }
+
+        .profile-image {
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .profile-image img {
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid var(--light-blue);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .chinese-name {
+            font-size: 1.5rem;
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .bio {
+            font-size: 1.05rem;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+            max-width: 600px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background-color: var(--light-blue);
+            color: var(--primary-blue);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn i {
+            margin-right: 8px;
+        }
+
+        .social-btn:hover {
+            background-color: var(--primary-blue);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: var(--primary-blue);
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+
+        .section-title i {
+            margin-right: 12px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-blue));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(to right, var(--secondary-blue), transparent);
+            margin-left: 20px;
+            opacity: 0.3;
+        }
+
+        /* News Timeline */
+        .news-list {
+            list-style: none;
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .news-item {
+            display: flex;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            align-items: baseline;
+        }
+
+        .news-item:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .news-date {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            color: var(--primary-blue);
+            min-width: 110px;
+            font-size: 0.95rem;
+        }
+
+        .news-content {
+            color: var(--text-dark);
+        }
+
+        /* Education Cards */
+        .edu-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .edu-card {
+            background: var(--bg-white);
+            padding: 25px;
+            border-radius: 16px;
+            border-left: 4px solid var(--secondary-blue);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+        }
+
+        .edu-card:hover {
+            transform: translateX(5px);
+        }
+
+        .edu-degree {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .edu-school {
+            font-size: 1.05rem;
+            color: var(--primary-blue);
+            margin: 5px 0;
+            font-weight: 500;
+        }
+
+        .edu-details {
+            font-size: 0.95rem;
+            color: var(--text-gray);
+        }
+
+        .edu-details i {
+            margin-right: 5px;
+            color: var(--secondary-blue);
+            width: 16px;
+        }
+
+        /* Publications & Patents */
+        .paper-card, .patent-card {
+            background: var(--bg-white);
+            padding: 25px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .paper-card:hover, .patent-card:hover {
+            box-shadow: var(--card-hover);
+            transform: translateY(-3px);
+        }
+
+        .paper-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .authors {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 8px;
+        }
+
+        .my-name {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .venue {
+            font-weight: 600;
+            color: #d84315; /* Orange/Red for high contrast on journal/venue */
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: inline-block;
+            background: #fff3e0;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .venue-tag {
+            font-weight: 600;
+            color: #2e7d32; /* Green for patents */
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            display: inline-block;
+            background: #e8f5e9;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        .abstract {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 10px;
+            border-top: 1px dashed #eee;
+            padding-top: 10px;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .service-box {
+            background: var(--bg-white);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: var(--card-shadow);
+            text-align: center;
+        }
+
+        .service-box h3 {
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .tag-cloud {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .tag {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            border-top: 1px solid #e0e0e0;
+            margin-top: 60px;
+        }
+
+        footer i {
+            color: #e91e63;
+            animation: beat 1.5s infinite;
+        }
+
+        @keyframes beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 40px 20px;
+                gap: 30px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2.2rem;
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .news-item {
+                flex-direction: column;
+            }
+            
+            .news-date {
+                margin-bottom: 4px;
+                color: var(--text-gray);
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="profile-content">
+                <div class="chinese-name">左瑞帆</div>
+                <h1>Ruifan Zuo</h1>
+                <p class="bio">
+                    Ph.D. Candidate at <strong>Qilu University of Technology (Shandong Academy of Sciences)</strong>. 
+                    Focusing on <strong>Computer Science and Technology</strong>, specifically Multi-modal Hashing and Federated Learning.
+                    <br>
+                    <i class="fas fa-map-marker-alt" style="color:var(--primary-blue)"></i> Shandong, China
+                </p>
+                <div class="social-links">
+                    <a href="mailto:your.email@example.com" class="social-btn"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="#" class="social-btn"><i class="fab fa-google-scholar"></i> Google Scholar</a>
+                    <a href="#" class="social-btn"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="#" class="social-btn"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                </div>
+            </div>
+            <div class="profile-image">
+                <!-- Placeholder Image: Replace with your actual photo -->
+                <img src="https://scholar.googleusercontent.com/citations?view_op=medium_photo&user=HI_euxYAAAAJ&citpid=4" alt="Ruifan Zuo">
+            </div>
+        </header>
+
+        <!-- News Section -->
+        <section id="news">
+            <h2 class="section-title"><i class="far fa-newspaper"></i> News</h2>
+            <ul class="news-list">
+                <li class="news-item">
+                    <div class="news-date">2025.01</div>
+                    <div class="news-content">One paper accepted by <strong>IEEE Transactions on Multimedia (TMM)</strong>.</div>
+                </li>
+                <li class="news-item">
+                    <div class="news-date">2024.12</div>
+                    <div class="news-content">One paper accepted by <strong>AAAI Conference on Artificial Intelligence (AAAI)</strong>.</div>
+                </li>
+                <li class="news-item">
+                    <div class="news-date">2024.10</div>
+                    <div class="news-content">One paper accepted by <strong>International Joint Conference on Neural Networks (IJCNN)</strong>.</div>
+                </li>
+                <li class="news-item">
+                    <div class="news-date">2024.09</div>
+                    <div class="news-content">One paper accepted by <strong>ACM Transactions on Multimedia Computing, Communications and Applications (TOMM)</strong>.</div>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education">
+            <h2 class="section-title"><i class="fas fa-graduation-cap"></i> Education</h2>
+            <div class="edu-grid">
+                <!-- PhD -->
+                <div class="edu-card">
+                    <div class="edu-degree">Ph.D. in Computer Science and Technology</div>
+                    <div class="edu-school">Qilu University of Technology (Shandong Academy of Sciences)</div>
+                    <div class="edu-details">
+                        <i class="far fa-calendar-alt"></i> 2023.08 - 2026.06 <br>
+                        <i class="fas fa-user-tie"></i> Advisors: <a href="#">Phd. Chaoqun Zheng</a>, <a href="#">Prof. Wenpeng Lu</a>
+                    </div>
+                </div>
+                <!-- Bachelor -->
+                <div class="edu-card">
+                    <div class="edu-degree">B.E. in Intelligent Science and Technology</div>
+                    <div class="edu-school">Qilu University of Technology (Shandong Academy of Sciences)</div>
+                    <div class="edu-details">
+                        <i class="far fa-calendar-alt"></i> 2019.09 - 2023.06
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications">
+            <h2 class="section-title"><i class="fas fa-book-open"></i> Selected Publications</h2>
+            
+            <!-- Paper 1 -->
+            <div class="paper-card">
+                <span class="paper-title">Learning Together Securely: Prototype-Based Federated Multi-Modal Hashing for Safe and Efficient Multi-Modal Retrieval</span>
+                <div class="authors"><span class="my-name">Ruifan Zuo</span>, Chaoqun Zheng, Lei Zhu, Wenpeng Lu, Yuanyuan Xiang, Zhao Li, Xiaofeng Qu</div>
+                <div class="venue">Proceedings of the AAAI Conference on Artificial Intelligence (AAAI), 2025 (CCF-A)</div>
+            </div>
+
+            <!-- Paper 2 -->
+            <div class="paper-card">
+                <span class="paper-title">Compact-yet-Separate: Proto-centric Multi-modal Hashing with Pronounced Category Differences for Multi-modal Retrieval</span>
+                <div class="authors"><span class="my-name">Ruifan Zuo</span>, Chaoqun Zheng, Lei Zhu, Wenpeng Lu, Jiasheng Si, Weiyu Zhang</div>
+                <div class="venue">IEEE Transactions on Multimedia (TMM), 2025 (SCI Q1, CCF-B)</div>
+            </div>
+
+            <!-- Paper 3 -->
+            <div class="paper-card">
+                <span class="paper-title">Privacy-enhanced prototype-based federated cross-modal hashing for cross-modal retrieval</span>
+                <div class="authors"><span class="my-name">Ruifan Zuo</span>, Chaoqun Zheng, Fengling Li, Lei Zhu, Zheng Zhang</div>
+                <div class="venue">ACM Transactions on Multimedia Computing, Communications and Applications (TOMM), 2024 (CCF-B, SCI Q3)</div>
+            </div>
+
+            <!-- Paper 4 -->
+            <div class="paper-card">
+                <span class="paper-title">Semantic Reconstruction Guided Missing Cross-modal Hashing</span>
+                <div class="authors">Yafang Li, Chaoqun Zheng, <span class="my-name">Ruifan Zuo</span>, Wenpeng Lu</div>
+                <div class="venue">International Joint Conference on Neural Networks (IJCNN), 2024 (CCF-C)</div>
+            </div>
+        </section>
+
+        <!-- Patents Section -->
+        <section id="patents">
+            <h2 class="section-title"><i class="fas fa-certificate"></i> Patents</h2>
+            
+            <div class="patent-card">
+                <span class="paper-title">Multi-modal Hashing Retrieval Method Based on Multi-View Center Structure</span>
+                <div class="authors">Chaoqun Zheng, <span class="my-name">Ruifan Zuo</span>, Guocheng Hu, Xiangjun Dong, Hongjiao Guan, Xiaoqiang Ren, Long Zhao</div>
+                <div class="venue-tag">Status: Authorized (Granted)</div>
+            </div>
+
+            <div class="patent-card">
+                <span class="paper-title">Multi-modal Hashing Retrieval Method Based on Deep Semantic Agents</span>
+                <div class="authors">Chaoqun Zheng, <span class="my-name">Ruifan Zuo</span>, Hongjiao Guan, Wenpeng Lu</div>
+                <div class="venue-tag">Status: Authorized (Granted)</div>
+            </div>
+
+            <div class="patent-card">
+                <span class="paper-title">Federal Cross-Modal Hashing Retrieval Method Based on Prototype Privacy Encryption</span>
+                <div class="authors">Chaoqun Zheng, <span class="my-name">Ruifan Zuo</span>, Wenpeng Lu, Xiaoqiang Ren</div>
+                <div class="venue-tag">Status: Authorized (Granted)</div>
+            </div>
+
+            <div class="patent-card">
+                <span class="paper-title">Federal Medical Multimodal Hashing Retrieval Method Based on Prototypes</span>
+                <div class="authors">Chaoqun Zheng, <span class="my-name">Ruifan Zuo</span>, Wenpeng Lu, Weiyu Zhang, Xinxiao Qiao, Jiasheng Si</div>
+                <div class="venue-tag" style="color:#f57c00; background:#fff3e0;">Status: Substantive Examination</div>
+            </div>
+
+            <div class="patent-card">
+                <span class="paper-title">Supervised Multimodal Hashing Retrieval Method and System Based on Label Enhancement</span>
+                <div class="authors">Chaoqun Zheng, Yafang Li, <span class="my-name">Ruifan Zuo</span>, Wenpeng Lu</div>
+                <div class="venue-tag" style="color:#f57c00; background:#fff3e0;">Status: Substantive Examination</div>
+            </div>
+        </section>
+
+        <!-- Academic Services Section -->
+        <section id="services">
+            <h2 class="section-title"><i class="fas fa-glasses"></i> Academic Services</h2>
+            <div class="services-grid">
+                <div class="service-box">
+                    <h3><i class="fas fa-users"></i> Conference Reviewer</h3>
+                    <div class="tag-cloud">
+                        <span class="tag">AAAI (CCF-A)</span>
+                        <span class="tag">ACM MM (CCF-A)</span>
+                        <span class="tag">SIGIR (CCF-A)</span>
+                        <span class="tag">ICASSP (CCF-B)</span>
+                        <span class="tag">ICME (CCF-B)</span>
+                    </div>
+                </div>
+                <div class="service-box">
+                    <h3><i class="fas fa-book"></i> Journal Reviewer</h3>
+                    <div class="tag-cloud">
+                        <span class="tag">TKDE (CCF-A)</span>
+                        <span class="tag">TOIS (CCF-A)</span>
+                        <span class="tag">TMM (Q1)</span>
+                        <span class="tag">TCSVT (Q1)</span>
+                        <span class="tag">TOMM (Q1)</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2025 Ruifan Zuo. All Rights Reserved.</p>
+            <p style="margin-top:10px; opacity: 0.7;">Designed with <i class="fas fa-heart"></i> using Semantic HTML & CSS.</p>
+        </footer>
+    </div>
+
+</body>
+</html>
